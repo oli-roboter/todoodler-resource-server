@@ -10,17 +10,16 @@ export default function makeExpressCallabck(controller) {
       headers: {
         'Content-Type': req.get('Content-Type'),
         Referer: req.get('referer'),
-        'User-Agent': req.get('User-Agent')
-      }
-    }
+        'User-Agent': req.get('User-Agent'),
+      },
+    };
     controller(httpRequest)
-      .then(httpResponse => {
-        if (httpResponse.headers) {
-          res.set(httpResponse.headers)
-        }
-        res.type('json')
-        res.status(httpResponse.statusCode).send(httpResponse.body)
+      .then(({ headers, statusCode, data }) => {
+        res
+          .set(headers)
+          .status(statusCode)
+          .send(data);
       })
-      .catch(e => res.status(500).send({ error: 'An unkown error occurred.' }))
-  }
+      .catch((e) => res.status(500).send({ error: e.message }));
+  };
 }

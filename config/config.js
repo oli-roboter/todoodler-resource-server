@@ -2,12 +2,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const { PORT, NODE_ENV } = process.env;
-const MONGO_DB = process.env.USERS_DB_URL;
-const AUTH_DB = process.env.USERS_DB_NAME;
+const { PORT, NODE_ENV, DB_URL, API_ROOT } = process.env;
+const TODO_DB = process.env.DB_NAME;
 export {
   PORT,
   NODE_ENV,
-  MONGO_DB,
-  AUTH_DB,
+  API_ROOT,
+  DB_URL,
+  TODO_DB,
 };
