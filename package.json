@@ -1,0 +1,42 @@
+{
+  "name": "todoodler-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "server": "babel-node ./src/bin/www",
+    "transpile": "babel ./src --out-dir dist",
+    "clean": "rimraf dist",
+    "build": "npm-run-all clean transpile",
+    "prod": "NODE_ENV=production npm-run-all build src",
+    "dev": "NODE_ENV=development npm-run-all build src",
+    "watch:dev": "nodemon",
+    "test:unit": "jest --verbose --runInBand --detectOpenHandles ./tests/unit",
+    "test:all": "jest --verbose --runInBand --detectOpenHandles ./tests",
+    "test:coverage": "jest --verbose --runInBand --detectOpenHandles --coverage ./tests",
+    "test:integration": "jest ./tests/integration"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "mongodb": "^3.5.8",
+    "npm-run-all": "^4.1.5",
+    "uuid-token-generator": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "testcontainers": "^2.12.0"
+  }
+}
