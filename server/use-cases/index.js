@@ -9,6 +9,14 @@ const editTodo = makeEditTodo({ todoDb });
 const listTodo = makeListTodo({ todoDb });
 const removeTodo = makeRemoveTodo({ todoDb });
 
+const todoService = Object.freeze({
+  addTodo,
+  editTodo,
+  listTodo,
+  removeTodo,
+});
+
+export default todoService;
 export {
   addTodo,
   editTodo,

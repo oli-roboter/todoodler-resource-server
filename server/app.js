@@ -6,7 +6,7 @@ import { API_ROOT } from '../config/config';
 import {
   postTodo,
   deleteTodo,
-  editTodo,
+  patchTodo,
   getTodo,
   notFound,
 } from './controllers';
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.get(`${API_ROOT}/todo`, makeCallback(getTodo));
 app.post(`${API_ROOT}/todo`, makeCallback(postTodo));
-app.patch(`${API_ROOT}/todo/:id`, makeCallback(editTodo));
+app.patch(`${API_ROOT}/todo/:id`, makeCallback(patchTodo));
 app.delete(`${API_ROOT}/todo`, makeCallback(deleteTodo));
 app.delete(`${API_ROOT}/todo/:id`, makeCallback(deleteTodo));
 app.use(makeCallback(notFound));
