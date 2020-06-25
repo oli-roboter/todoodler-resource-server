@@ -1,14 +1,18 @@
 /* eslint-disable no-return-await */
 export default function makeTodoDB({ makeDb }) {
-  const insertTodo = async (todo) => {
+  const insert = async (todoInfo) => {
     const db = await makeDb();
+    console.log('inserting todo Info into database');
+    return 'success';
     // return await db
     //   .collection('users')
     //   .insertOne({ username, password });
   };
 
-  const patchTodo = async (todoId, item) => {
+  const update = async (todoId, item) => {
     const db = await makeDb();
+    console.log('updating todo Info in database');
+    return 'success';
     // return await db
     //   .collection('tokens')
     //   .replaceOne(
@@ -46,8 +50,8 @@ export default function makeTodoDB({ makeDb }) {
 
   return Object.freeze({
     getTodos,
-    insertTodo,
-    patchTodo,
+    insert,
+    update,
     deleteTodo,
     deleteAllTodos,
   });

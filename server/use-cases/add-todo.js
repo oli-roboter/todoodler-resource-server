@@ -15,7 +15,7 @@ export default function makeAddTodo({ todoDb }) {
       detail: todo.getDetail(),
       importance: todo.getImportance(),
       status: todo.getStatus(),
-      history: todo.getHistory()
+      history: todo.getHistory(),
     });
   };
 }
