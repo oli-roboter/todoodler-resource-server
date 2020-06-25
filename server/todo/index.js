@@ -1,4 +1,4 @@
-export default function buildmakeTodo({ Id }) {
+export default function buildmakeTodo() {
   return function makeTodo({
     author,
     createdOn = Date.now(),
@@ -9,8 +9,11 @@ export default function buildmakeTodo({ Id }) {
     assignedTo,
     text,
     detail,
-    importance } = {}) {
-    //add validation rules for each field
+    importance,
+    status,
+    history,
+  } = {}) {
+    // add validation rules for each field
     return Object.freeze({
       getAuthor: () => author,
       getCreatedOn: () => createdOn,
@@ -22,6 +25,8 @@ export default function buildmakeTodo({ Id }) {
       getText: () => text,
       getDetail: () => detail,
       getImportance: () => importance,
+      getStatus: () => status,
+      getHistory: () => history,
     });
   };
 }

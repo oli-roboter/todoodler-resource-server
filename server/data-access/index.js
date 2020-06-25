@@ -1,6 +1,6 @@
 import mongodb from 'mongodb';
 import { DB_URL } from '../../config/config';
-import makeAuthDB from './db';
+import makeTodoDB from './db';
 
 const { MongoClient } = mongodb;
 const url = DB_URL;
@@ -18,5 +18,5 @@ export async function makeDb() {
   return client.db(dbName);
 }
 
-const todoDB = makeAuthDB({ makeDb });
+const todoDB = makeTodoDB({ makeDb });
 export default todoDB;
