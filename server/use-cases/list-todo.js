@@ -1,20 +1,31 @@
 /* eslint-disable no-return-await */
 export default function makeListTodo({ todoDb }) {
-  const listByAuthor = async ({ author }) => {
-    return await todoDb.getByAuthor(author);
-  };
+  return async function listTodo({ query }) {
+    const { func, arg } = query;
 
-  const listByImportance = async ({ importance }) => {
-    return await todoDb.getByImportance(importance);
-  };
+    const listAll = async () => {
+      return await todoDb.getAll();
+    };
 
-  const listAll = async () => {
-    return await todoDb.getAll();
-  };
+    const listByAuthor = async (author) => {
+      return await todoDb.getByAuthor(author);
+    };
 
-  return Object.freeze({
-    listAll,
-    listByAuthor,
-    listByImportance,
-  });
+    const listByAssignedTo = async (user) => {
+      return await todoDb.getByAssignedTo(user);
+    };
+
+    const functionPicker = {
+      byAuthor: (author) => listByAuthor(author),
+      byAssignedTo: (user) => listByAssignedTo(user),
+      all: () => listAll(),
+    };
+
+    const returnFunction = async () => {
+      if (!func || !arg || functionPicker[func] === undefined) return await listAll();
+      return await functionPicker[func](arg);
+    };
+
+    return await returnFunction(func, arg);
+  };
 }

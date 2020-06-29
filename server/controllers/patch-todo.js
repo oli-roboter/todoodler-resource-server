@@ -1,4 +1,4 @@
-export default function patchPostTodo({ editTodo, httpResponseHandler }) {
+export default function makePatchTodo({ editTodo, httpResponseHandler }) {
   return async function patchTodo(httpRequest) {
     try {
       const { ...todoInfo } = httpRequest.body;

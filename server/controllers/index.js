@@ -13,7 +13,7 @@ import notFound from './not-found';
 
 const postTodo = makePostTodo({ addTodo, httpResponseHandler });
 const deleteTodo = makeDeleteTodo({ removeTodo });
-const getTodo = makeGetTodo({ listTodo });
+const getTodo = makeGetTodo({ listTodo, httpResponseHandler });
 const patchTodo = makePatchTodo({ editTodo, httpResponseHandler });
 
 const todoController = Object.freeze({

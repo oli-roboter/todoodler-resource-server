@@ -28,8 +28,27 @@ export default function makeTodoDB({ makeDb }) {
     //   );
   };
 
-  const getTodos = async () => {
+  const getAll = async () => {
     const db = await makeDb();
+    return `success GetAll`;
+    // return await db
+    //   .collection('users')
+    //   .find({ username })
+    //   .toArray();
+  };
+
+  const getByAuthor = async (author) => {
+    const db = await makeDb();
+    return `success byAuthor ${author}`;
+    // return await db
+    //   .collection('users')
+    //   .find({ username })
+    //   .toArray();
+  };
+
+  const getByAssignedTo = async (user) => {
+    const db = await makeDb();
+    return `success byAssignerdTo ${user}`;
     // return await db
     //   .collection('users')
     //   .find({ username })
@@ -56,7 +75,9 @@ export default function makeTodoDB({ makeDb }) {
 
   return Object.freeze({
     findById,
-    getTodos,
+    getAll,
+    getByAuthor,
+    getByAssignedTo,
     insert,
     update,
     deleteTodo,
