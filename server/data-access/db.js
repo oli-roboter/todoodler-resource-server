@@ -1,5 +1,11 @@
 /* eslint-disable no-return-await */
 export default function makeTodoDB({ makeDb }) {
+  const findById = async (id) => {
+    const db = await makeDb();
+    console.log('finding by id:', id);
+    return 'success';
+  };
+
   const insert = async (todoInfo) => {
     const db = await makeDb();
     console.log('inserting todo Info into database');
@@ -49,6 +55,7 @@ export default function makeTodoDB({ makeDb }) {
   };
 
   return Object.freeze({
+    findById,
     getTodos,
     insert,
     update,

@@ -3,8 +3,10 @@ import makeTodo from '../todo';
 
 export default function makeEditTodo({ todoDb }) {
   return async function editTodo({ id, ...changes } = {}) {
-    const existing = todoDb.findById({ id });
+    const existing = todoDb.findById(id);
     const todo = makeTodo(...existing, ...changes);
+    // when both objects are using spread operator, identical keys of 
+    // first object are substituted by second object;
     return await todoDb.update({
       modifiedOn: todo.getModifiedOn(),
       dueDate: todo.getDueDate(),
