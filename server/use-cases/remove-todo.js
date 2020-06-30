@@ -1,22 +1,35 @@
 /* eslint-disable no-return-await */
 export default function makeRemoveTodo({ todoDb }) {
-  // add something to write into history
-  // the operations are all softDelete, history will never be lost
-  const deleteById = async ({ id }) => {
-    return await todoDb.removeByAuthor(id);
-  };
+  return async function removeTodo({ id, func, arg }) {
+    const deleteById = async () => {
+      return await todoDb.removeById(id);
+    };
 
-  const deleteByAuthor = async ({ author }) => {
-    return await todoDb.removeByAuthor(author);
-  };
+    if (id) return deleteById();
 
-  const deleteAll = async () => {
-    return await todoDb.removeAll();
-  };
+    const deleteByAuthor = async ({ author }) => {
+      return await todoDb.removeByAuthor(author);
+    };
 
-  return Object.freeze({
-    deleteById,
-    deleteByAuthor,
-    deleteAll,
-  });
+    const deleteByAssignedTo = async ({ user }) => {
+      return await todoDb.removeByAuthor(user);
+    };
+
+    const deleteAll = async () => {
+      return await todoDb.removeAll();
+    };
+
+    const functionPicker = {
+      byAuthor: (author) => deleteByAuthor(author),
+      byAssignedTo: (user) => deleteByAssignedTo(user),
+      all: () => deleteAll(),
+    };
+
+    const returnFunction = async () => {
+      if (!func || !arg || functionPicker[func] === undefined) return 404;
+      return await functionPicker[func](arg);
+    };
+
+    return await returnFunction;
+  };
 }

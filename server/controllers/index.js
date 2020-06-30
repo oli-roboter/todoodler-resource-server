@@ -12,7 +12,7 @@ import makeGetTodo from './get-todo';
 import notFound from './not-found';
 
 const postTodo = makePostTodo({ addTodo, httpResponseHandler });
-const deleteTodo = makeDeleteTodo({ removeTodo });
+const deleteTodo = makeDeleteTodo({ removeTodo, httpResponseHandler });
 const getTodo = makeGetTodo({ listTodo, httpResponseHandler });
 const patchTodo = makePatchTodo({ editTodo, httpResponseHandler });
 

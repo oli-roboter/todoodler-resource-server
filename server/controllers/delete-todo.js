@@ -1,9 +1,19 @@
-const deleteTodo = async () => ({
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  data: { message: 'Hit the delete Todo endpoint' },
-  statusCode: 200,
-});
+export default function makeDeleteTodo({ removeTodo, httpResponseHandler }) {
+  return async function deleteTodo(httpRequest) {
+    try {
+      const { query } = httpRequest;
+      const { id } = httpRequest.params;
 
-export default deleteTodo;
+      const toDelete = {
+        ...query,
+        id: id !== undefined ? null : id,
+      };
+
+      const deleted = await removeTodo(toDelete);
+      return httpResponseHandler[200](deleted);
+    } catch (e) {
+      // console.error(e);
+      return httpResponseHandler[500](e.message);
+    }
+  };
+}

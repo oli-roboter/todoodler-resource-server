@@ -55,7 +55,7 @@ export default function makeTodoDB({ makeDb }) {
     //   .toArray();
   };
 
-  const deleteTodo = async (todoId) => {
+  const deleteById = async (id) => {
     const db = await makeDb();
     // const response = await db
     //   .collection('tokens')
@@ -65,7 +65,7 @@ export default function makeTodoDB({ makeDb }) {
     return false;
   };
 
-  const deleteAllTodos = async () => {
+  const deleteByAssignedTo = async (user) => {
     const db = await makeDb();
     // return await db
     //   .collection('tokens')
@@ -80,7 +80,7 @@ export default function makeTodoDB({ makeDb }) {
     getByAssignedTo,
     insert,
     update,
-    deleteTodo,
-    deleteAllTodos,
+    deleteById,
+    deleteByAssignedTo,
   });
 }
