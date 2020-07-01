@@ -1,10 +1,10 @@
 /* eslint-disable no-return-await */
 export default function makeListTodo({ todoDb }) {
-  return async function listTodo({ query }) {
+  return async function listTodo({ workGroup, query }) {
     const { func, arg } = query;
 
     const listAll = async () => {
-      return await todoDb.getAll();
+      return await todoDb.getAll(workGroup);
     };
 
     const listByAuthor = async (author) => {

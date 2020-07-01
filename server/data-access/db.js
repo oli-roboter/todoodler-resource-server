@@ -7,7 +7,6 @@ export default function makeTodoDB({ makeDb }) {
   };
 
   const insert = async (todoInfo) => {
-    console.log('inserting todo:', todoInfo);
     const db = await makeDb();
     return await db
       .collection('todo')
@@ -26,31 +25,28 @@ export default function makeTodoDB({ makeDb }) {
     //   );
   };
 
-  const getAll = async () => {
+  const getAll = async (workGroup) => {
     const db = await makeDb();
-    return [{ author: 'Oliver', createdOn: Date.now(), text: 'Test' }];
-    // return await db
-    //   .collection('users')
-    //   .find({ username })
-    //   .toArray();
+    return await db
+      .collection('todo')
+      .find({ workGroup })
+      .toArray();
   };
 
   const getByAuthor = async (author) => {
     const db = await makeDb();
-    return `success byAuthor ${author}`;
-    // return await db
-    //   .collection('users')
-    //   .find({ username })
-    //   .toArray();
+    return await db
+      .collection('todo')
+      .find({ author })
+      .toArray();
   };
 
-  const getByAssignedTo = async (user) => {
+  const getByAssignedTo = async (assignedTo) => {
     const db = await makeDb();
-    return `success byAssignerdTo ${user}`;
-    // return await db
-    //   .collection('users')
-    //   .find({ username })
-    //   .toArray();
+    return await db
+      .collection('todo')
+      .find({ assignedTo })
+      .toArray();
   };
 
   const deleteById = async (id) => {
