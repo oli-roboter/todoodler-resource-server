@@ -11,6 +11,7 @@ export default function makeExpressCallabck(controller) {
         'Content-Type': req.get('Content-Type'),
         Referer: req.get('referer'),
         'User-Agent': req.get('User-Agent'),
+        token: req.headers['x-todo-token'],
       },
     };
     controller(httpRequest)

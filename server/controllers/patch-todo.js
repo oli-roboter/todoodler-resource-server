@@ -6,7 +6,6 @@ export default function makePatchTodo({ editTodo, httpResponseHandler }) {
         id: httpRequest.params.id,
         ...todoInfo,
       };
-      // console.log('to Edit', toEdit);
       const patched = await editTodo(toEdit);
       return httpResponseHandler[200](patched);
     } catch (e) {

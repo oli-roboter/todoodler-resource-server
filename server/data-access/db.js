@@ -18,7 +18,6 @@ export default function makeTodoDB({ makeDb }) {
   const update = async (todoId, item) => {
     const db = await makeDb();
     console.log('updating todo Info in database');
-    return 'success';
     // return await db
     //   .collection('tokens')
     //   .replaceOne(
@@ -30,7 +29,7 @@ export default function makeTodoDB({ makeDb }) {
 
   const getAll = async () => {
     const db = await makeDb();
-    return `success GetAll`;
+    return [{ author: 'Oliver', createdOn: Date.now(), text: 'Test' }];
     // return await db
     //   .collection('users')
     //   .find({ username })

@@ -6,17 +6,16 @@ const makeHttpError = ({ statusCode, errorMessage }) => ({
   data: {
     success: false,
     error: errorMessage,
+    data: [],
   },
 });
 
 const makeHttpResponse = ({ statusCode, response }) => {
-  const { result, token } = response;
   const data = {
     success: true,
     error: null,
-    message: result,
+    data: [...response],
   };
-  if (token) data.token = token;
   return {
     headers: {
       'Content-Type': 'application/json',

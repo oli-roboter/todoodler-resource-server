@@ -1,34 +1,35 @@
 import httpResponseHandler from '../http-handler';
+import authenticate from '../auth/authentication';
 import {
+  listTodo,
   addTodo,
   editTodo,
-  listTodo,
   removeTodo,
 } from '../use-cases';
+import makeGetTodo from './get-todo';
 import makePostTodo from './post-todo';
 import makeDeleteTodo from './delete-todo';
 import makePatchTodo from './patch-todo';
-import makeGetTodo from './get-todo';
 import notFound from './not-found';
 
+const getTodo = makeGetTodo({ listTodo, httpResponseHandler, authenticate });
 const postTodo = makePostTodo({ addTodo, httpResponseHandler });
 const deleteTodo = makeDeleteTodo({ removeTodo, httpResponseHandler });
-const getTodo = makeGetTodo({ listTodo, httpResponseHandler });
 const patchTodo = makePatchTodo({ editTodo, httpResponseHandler });
 
 const todoController = Object.freeze({
+  getTodo,
   postTodo,
   deleteTodo,
   patchTodo,
-  getTodo,
   notFound,
 });
 
 export default todoController;
 export {
+  getTodo,
   postTodo,
   deleteTodo,
   patchTodo,
-  getTodo,
   notFound,
 };
