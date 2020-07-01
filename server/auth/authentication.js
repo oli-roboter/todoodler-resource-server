@@ -7,15 +7,7 @@ export default async function authRequest({ token, username }) {
       params: { username },
       headers: { 'x-todo-token': token },
     });
-    /*
-    {
-      success: true,
-      error: null,
-      message: 'Authorized',
-      token: 'DTL7A9VLZUwQQQMM9ojjrIMHllg3nqenCaqI8I8Jhg0'
-      //needs to have permission groups: post:user, post:admin, delete:user, delete:admin, etc
-    }
-    */
+
     return auth.data;
   } catch (e) {
     // console.error('AUTH ERROR:', data, status);

@@ -3,7 +3,11 @@ authetication and authorization for todoodler app
 
 #Database
 
-in dev mode, run mongoDB as docker by pasting the following in the terminal:
-docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.4.0-rc8
+in dev mode, run mongoDB (todoDb) as docker by pasting the following in the terminal:
+docker run -d -p 8002:27017 --name tododb mongo:4.4.0-rc8
 
 to run mongo in the shell, type 'docker exec -it mongodb bash' and then 'mongo'
+
+Todo:
+- add permissions
+- think of db methods needed

@@ -7,12 +7,11 @@ export default function makeTodoDB({ makeDb }) {
   };
 
   const insert = async (todoInfo) => {
+    console.log('inserting todo:', todoInfo);
     const db = await makeDb();
-    console.log('inserting todo Info into database');
-    return 'success';
-    // return await db
-    //   .collection('users')
-    //   .insertOne({ username, password });
+    return await db
+      .collection('todo')
+      .insertOne(todoInfo);
   };
 
   const update = async (todoId, item) => {

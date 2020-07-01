@@ -1,7 +1,7 @@
 export default function makeGetTodo({ listTodo, httpResponseHandler, authenticate }) {
   return async function getTodo(httpRequest) {
     try {
-      const { token } = httpRequest.headers;// const auth
+      const { token } = httpRequest.headers;
       const { username } = httpRequest.body;
       const { query } = httpRequest;
       const auth = await authenticate({ token, username });

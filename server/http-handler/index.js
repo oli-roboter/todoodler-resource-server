@@ -14,7 +14,7 @@ const makeHttpResponse = ({ statusCode, response }) => {
   const data = {
     success: true,
     error: null,
-    data: [...response],
+    data: response,
   };
   return {
     headers: {

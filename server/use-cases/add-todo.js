@@ -5,6 +5,9 @@ export default function makeAddTodo({ todoDb }) {
   return async function addTodo(todoInfo) {
     const todo = makeTodo(todoInfo);
     return await todoDb.insert({
+      todoId: todo.getId(),
+      author: todo.getAuthor(),
+      workGroup: todo.getWorkGroup(),
       createdOn: todo.getCreatedOn(),
       modifiedOn: todo.getModifiedOn(),
       completedOn: todo.getCompletedOn(),
