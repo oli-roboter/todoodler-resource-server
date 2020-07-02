@@ -3,7 +3,6 @@ import makeTodo from '../todo';
 
 export default function makeEditTodo({ todoDb }) {
   return async function editTodo({ todoId, ...changes } = {}) {
-    // console.log(todoId, changes);
     const existing = await todoDb.findById(todoId);
 
     if (existing) {

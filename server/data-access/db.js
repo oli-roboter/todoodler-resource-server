@@ -50,22 +50,32 @@ export default function makeTodoDB({ makeDb }) {
       .toArray();
   };
 
-  const deleteById = async (id) => {
+  const deleteById = async (todoId) => {
     const db = await makeDb();
-    // const response = await db
-    //   .collection('tokens')
-    //   .findOneAndDelete({ username, token });
-
-    // if (response.lastErrorObject.n === 1) return true;
-    return false;
+    return await db
+      .collection('todo')
+      .deleteOne({ todoId });
   };
 
   const deleteByAssignedTo = async (user) => {
     const db = await makeDb();
-    // return await db
-    //   .collection('tokens')
-    //   .find({ username })
-    //   .toArray();
+    return await db
+      .collection('todo')
+      .deleteMany({ assignedTo: user });
+  };
+
+  const deleteByAuthor = async (author) => {
+    const db = await makeDb();
+    return await db
+      .collection('todo')
+      .deleteMany({ author });
+  };
+
+  const deleteAll = async (workGroup) => {
+    const db = await makeDb();
+    return await db
+      .collection('todo')
+      .deleteMany({ workGroup });
   };
 
   return Object.freeze({
@@ -77,5 +87,7 @@ export default function makeTodoDB({ makeDb }) {
     replace,
     deleteById,
     deleteByAssignedTo,
+    deleteByAuthor,
+    deleteAll,
   });
 }

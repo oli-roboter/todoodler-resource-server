@@ -1,35 +1,26 @@
 /* eslint-disable no-return-await */
 export default function makeRemoveTodo({ todoDb }) {
-  return async function removeTodo({ id, func, arg }) {
-    const deleteById = async () => {
-      return await todoDb.removeById(id);
-    };
+  return async function removeTodo({ workGroup, func, arg }) {
+    const deleteById = async (todoId) => await todoDb.deleteById(todoId);
 
-    if (id) return deleteById();
+    const deleteByAuthor = async (author) => await todoDb.deleteByAuthor(author);
 
-    const deleteByAuthor = async ({ author }) => {
-      return await todoDb.removeByAuthor(author);
-    };
+    const deleteByAssignedTo = async (user) => await todoDb.deleteByAssignedTo(user);
 
-    const deleteByAssignedTo = async ({ user }) => {
-      return await todoDb.removeByAuthor(user);
-    };
-
-    const deleteAll = async () => {
-      return await todoDb.removeAll();
-    };
+    const deleteAll = async () => await todoDb.deleteAll(workGroup);
 
     const functionPicker = {
+      byId: (todoId) => deleteById(todoId),
       byAuthor: (author) => deleteByAuthor(author),
       byAssignedTo: (user) => deleteByAssignedTo(user),
-      all: () => deleteAll(),
+      all: (wg) => (wg === workGroup ? deleteAll() : null),
     };
 
     const returnFunction = async () => {
-      if (!func || !arg || functionPicker[func] === undefined) return 404;
+      if (!func || !arg || functionPicker[func] === undefined) return null;
       return await functionPicker[func](arg);
     };
 
-    return await returnFunction;
+    return await returnFunction(func, arg);
   };
 }
