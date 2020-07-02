@@ -1,9 +1,10 @@
 /* eslint-disable no-return-await */
 export default function makeTodoDB({ makeDb }) {
-  const findById = async (id) => {
+  const findById = async (todoId) => {
     const db = await makeDb();
-    console.log('finding by id:', id);
-    return 'success';
+    return await db
+      .collection('todo')
+      .findOne({ todoId });
   };
 
   const insert = async (todoInfo) => {
@@ -13,16 +14,16 @@ export default function makeTodoDB({ makeDb }) {
       .insertOne(todoInfo);
   };
 
-  const update = async (todoId, item) => {
+  const replace = async (todo) => {
     const db = await makeDb();
-    console.log('updating todo Info in database');
-    // return await db
-    //   .collection('tokens')
-    //   .replaceOne(
-    //     { username },
-    //     { username, token },
-    //     { upsert: true },
-    //   );
+    const { todoId } = todo;
+    return await db
+      .collection('todo')
+      .findOneAndReplace(
+        { todoId },
+        { ...todo },
+        { returnOriginal: false },
+      );
   };
 
   const getAll = async (workGroup) => {
@@ -73,7 +74,7 @@ export default function makeTodoDB({ makeDb }) {
     getByAuthor,
     getByAssignedTo,
     insert,
-    update,
+    replace,
     deleteById,
     deleteByAssignedTo,
   });

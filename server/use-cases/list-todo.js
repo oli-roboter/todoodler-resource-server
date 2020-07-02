@@ -3,17 +3,11 @@ export default function makeListTodo({ todoDb }) {
   return async function listTodo({ workGroup, query }) {
     const { func, arg } = query;
 
-    const listAll = async () => {
-      return await todoDb.getAll(workGroup);
-    };
+    const listAll = async () => await todoDb.getAll(workGroup);
 
-    const listByAuthor = async (author) => {
-      return await todoDb.getByAuthor(author);
-    };
+    const listByAuthor = async (author) => await todoDb.getByAuthor(author);
 
-    const listByAssignedTo = async (user) => {
-      return await todoDb.getByAssignedTo(user);
-    };
+    const listByAssignedTo = async (user) => await todoDb.getByAssignedTo(user);
 
     const functionPicker = {
       byAuthor: (author) => listByAuthor(author),

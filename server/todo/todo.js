@@ -13,7 +13,19 @@ export default function buildmakeTodo({ Id }) {
     detail,
     importance,
     status = 'active',
-    history = [{ author, createdOn }],
+    history = [{
+      author,
+      workGroup,
+      modifiedOn,
+      completedOn,
+      deletedOn,
+      dueDate,
+      assignedTo,
+      text,
+      detail,
+      importance,
+      status,
+    }],
   } = {}) {
     // const writeHistory = ({ ...changes }) => {
     // write some code that puts a date modified and changes made by whom

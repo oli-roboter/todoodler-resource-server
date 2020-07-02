@@ -8,20 +8,20 @@ import {
 } from '../use-cases';
 import makeGetTodo from './get-todo';
 import makePostTodo from './post-todo';
-import makeDeleteTodo from './delete-todo';
 import makePatchTodo from './patch-todo';
+import makeDeleteTodo from './delete-todo';
 import notFound from './not-found';
 
 const getTodo = makeGetTodo({ listTodo, httpResponseHandler, authenticate });
 const postTodo = makePostTodo({ addTodo, httpResponseHandler, authenticate });
+const patchTodo = makePatchTodo({ editTodo, httpResponseHandler, authenticate });
 const deleteTodo = makeDeleteTodo({ removeTodo, httpResponseHandler });
-const patchTodo = makePatchTodo({ editTodo, httpResponseHandler });
 
 const todoController = Object.freeze({
   getTodo,
   postTodo,
-  deleteTodo,
   patchTodo,
+  deleteTodo,
   notFound,
 });
 
@@ -29,7 +29,7 @@ export default todoController;
 export {
   getTodo,
   postTodo,
-  deleteTodo,
   patchTodo,
+  deleteTodo,
   notFound,
 };
