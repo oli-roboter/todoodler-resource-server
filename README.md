@@ -10,4 +10,9 @@ to run mongo in the shell, type 'docker exec -it mongodb bash' and then 'mongo'
 
 Todo:
 - add permissions
-- think of db methods needed
+- tests
+- refine db methods (for more granular control):
+  -> have group methods for counting compled and deleted todos
+  -> have filter to bring only active/deleted/completed todos
+- deployment config for pm2 (ecosystem.json)
+  - circle ci config file
