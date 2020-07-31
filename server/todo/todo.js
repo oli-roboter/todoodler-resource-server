@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default function buildmakeTodo({ Id }) {
   return function makeTodo({
     todoId = Id.makeId(),
@@ -31,7 +33,6 @@ export default function buildmakeTodo({ Id }) {
     // write some code that puts a date modified and changes made by whom
     //   history.push({ ...changes });
     // };
-
     // validation
     if (!Id.isValidId(todoId)) throw new Error('Todo must have a valid id.');
 
@@ -41,9 +42,7 @@ export default function buildmakeTodo({ Id }) {
 
     if (!text || text.length < 5) throw new Error('Todo must include at least 5 characters of text.');
 
-    if (!detail) throw new Error('Todo must include detail field.');
-
-    if (detail.length > 1 && detail.length < 10) throw new Error('Todo detail must have at least 10 characters');
+    if (detail.length < 10 && detail !== '') throw new Error('Todo detail must either be empty or have at least 10 characters');
 
     if (!importance) throw new Error('Todo must have an importance set.');
 
@@ -51,9 +50,10 @@ export default function buildmakeTodo({ Id }) {
 
     if (assignedTo.length < 2) throw new Error('Todo must be assigned to a valid username');
 
-    if (dueDate <= Date.now()) throw new Error('Due date must br greater than now');
+    const momentDueDate = moment(dueDate);
+    if (!dueDate && !momentDueDate.isValid()) throw new Error('Todo must have a valid due date');
 
-    if (!dueDate) throw new Error('Todo must have a due date');
+    if (dueDate <= Date.now()) throw new Error('Due date must br greater than now');
 
     return Object.freeze({
       getId: () => todoId,

@@ -6,7 +6,7 @@ authetication and authorization for todoodler app
 in dev mode, run mongoDB (todoDb) as docker by pasting the following in the terminal:
 docker run -d -p 8002:27017 --name tododb mongo:4.4.0-rc8
 
-to run mongo in the shell, type 'docker exec -it mongodb bash' and then 'mongo'
+to run mongo in the shell, type 'docker exec -it tododb bash' and then 'mongo'
 
 Todo:
 - add permissions
@@ -16,3 +16,4 @@ Todo:
   -> have filter to bring only active/deleted/completed todos
 - deployment config for pm2 (ecosystem.json)
   - circle ci config file
+- Add a publisher to push notifications to the group users when todos are changed
