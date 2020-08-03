@@ -22,9 +22,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.get(`${API_ROOT}/todo`, makeCallback(getTodo));
 app.post(`${API_ROOT}/todo`, makeCallback(postTodo));
-app.patch(`${API_ROOT}/todo/:id`, makeCallback(patchTodo));
+app.patch(`${API_ROOT}/todo/:todoId`, makeCallback(patchTodo));
 app.delete(`${API_ROOT}/todo`, makeCallback(deleteTodo));
-app.delete(`${API_ROOT}/todo/:id`, makeCallback(deleteTodo));
+app.delete(`${API_ROOT}/todo/:todoId`, makeCallback(deleteTodo));
 app.use(makeCallback(notFound));
 
 export default app;

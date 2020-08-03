@@ -2,9 +2,8 @@
 import makeTodo from '../todo';
 
 export default function makeEditTodo({ todoDb }) {
-  return async function editTodo({ todoId, ...changes } = {}) {
+  return async function editTodo({ todoId, changes } = {}) {
     const existing = await todoDb.findById(todoId);
-
     if (existing) {
       const { author, history } = existing;
       let { modifiedOn } = existing;
