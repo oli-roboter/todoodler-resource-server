@@ -34,6 +34,14 @@ export default function makeTodoDB({ makeDb }) {
       .toArray();
   };
 
+  const getActive = async (workGroup) => {
+    const db = await makeDb();
+    return await db
+      .collection('todo')
+      .find({ workGroup, status: 'active' })
+      .toArray();
+  };
+
   const getByAuthor = async (author) => {
     const db = await makeDb();
     return await db
@@ -81,6 +89,7 @@ export default function makeTodoDB({ makeDb }) {
   return Object.freeze({
     findById,
     getAll,
+    getActive,
     getByAuthor,
     getByAssignedTo,
     insert,

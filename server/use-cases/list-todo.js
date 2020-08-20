@@ -1,9 +1,9 @@
 /* eslint-disable no-return-await */
 export default function makeListTodo({ todoDb }) {
-  return async function listTodo({ workGroup, queryParams }) {
-    const { func, arg } = queryParams;
-
+  return async function listTodo({ workGroup, func, arg }) {
     const listAll = async () => await todoDb.getAll(workGroup);
+
+    const listActive = async () => await todoDb.getActive(workGroup);
 
     const listByAuthor = async (author) => await todoDb.getByAuthor(author);
 
@@ -12,6 +12,7 @@ export default function makeListTodo({ todoDb }) {
     const functionPicker = {
       byAuthor: (author) => listByAuthor(author),
       byAssignedTo: (user) => listByAssignedTo(user),
+      active: () => listActive(),
       all: () => listAll(),
     };
 

@@ -3,11 +3,12 @@ export default function makeGetTodo({ listTodo, httpResponseHandler, authenticat
     try {
       const { token } = httpRequest.headers;
       const { query } = httpRequest;
-      const { username, queryParams } = query;
+      const { username } = query;
+
       const auth = await authenticate({ token, username });
       if (auth.success) {
         const { workGroup } = auth.data;
-        const fetched = await listTodo({ workGroup, queryParams });
+        const fetched = await listTodo({ workGroup, ...query });
         return httpResponseHandler[200](fetched);
       }
       return httpResponseHandler[403]();

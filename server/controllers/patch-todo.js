@@ -5,6 +5,7 @@ export default function makePatchTodo({ editTodo, httpResponseHandler, authentic
       const { username, changes } = httpRequest.body;
       const { todoId } = httpRequest.params;
       const auth = await authenticate({ token, username });
+      // add check to make sure only author and assigneded person can modify
       if (auth.success) {
         const patched = await editTodo({ todoId, changes });
         return patched
