@@ -1,7 +1,7 @@
 import mongodb from 'mongodb';
-import { DB_URL } from '../config/config';
 import makeTodoDB from './db';
 
+const { DB_URL } = process.env.DB_URL;
 const { MongoClient } = mongodb;
 const url = DB_URL;
 const dbName = 'todo';

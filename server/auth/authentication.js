@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { AUTH_API_PATH } from '../config/config';
+
+const { AUTH_API_PATH } = process.env.AUTH_API_PATH;
 
 export default async function authRequest({ token, username }) {
   try {

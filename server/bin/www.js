@@ -6,13 +6,12 @@
 import app from '../app';
 const debug = require('debug')('server:server')
 import http from 'http';
-import { PORT } from '../config/config';
 console.log('listening on port', PORT);
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 console.log('Setting port to:', port);
 app.set('port', port);
 
