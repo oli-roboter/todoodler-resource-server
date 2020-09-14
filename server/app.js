@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/test', (req, res) => {
+app.get(`${API_ROOT} / test`, (req, res) => {
   console.log('Hitting resource server test');
   res.send('resource server test success');
 });
