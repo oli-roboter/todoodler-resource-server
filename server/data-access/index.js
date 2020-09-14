@@ -1,11 +1,9 @@
 import mongodb from 'mongodb';
 import makeTodoDB from './db';
 
-const { DB_URL } = process.env.DB_URL;
 const { MongoClient } = mongodb;
-const url = DB_URL;
 const dbName = 'todo';
-const client = new MongoClient(url,
+const client = new MongoClient(process.env.DB_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

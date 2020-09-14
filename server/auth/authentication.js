@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-const { AUTH_API_PATH } = process.env.AUTH_API_PATH;
-
 export default async function authRequest({ token, username }) {
   try {
-    const auth = await axios.get(AUTH_API_PATH, {
+    const auth = await axios.get(process.env.AUTH_API_PATH, {
       params: { username },
       headers: { 'x-todo-token': token },
     });
