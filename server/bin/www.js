@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+require('dotenv').config();
 import app from '../app';
 const debug = require('debug')('server:server')
 import http from 'http';
