@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_API_PATH } from '../../config/config';
+import { AUTH_API_PATH } from '../config/config';
 
 export default async function authRequest({ token, username }) {
   try {

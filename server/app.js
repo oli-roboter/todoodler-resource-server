@@ -3,7 +3,7 @@ import cors from 'cors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import makeCallback from './express-callback/express-callback';
-import { API_ROOT } from '../config/config';
+import { API_ROOT } from './config/config';
 import {
   postTodo,
   deleteTodo,
