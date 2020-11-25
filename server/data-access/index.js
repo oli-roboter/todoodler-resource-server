@@ -1,9 +1,9 @@
 import mongodb from 'mongodb';
-import { DB_URL } from '../config/config';
+import { MONGO_DB } from '../config/config';
 import makeTodoDB from './db';
 
 const { MongoClient } = mongodb;
-const url = DB_URL;
+const url = MONGO_DB;
 const dbName = 'todo';
 const client = new MongoClient(url,
   {

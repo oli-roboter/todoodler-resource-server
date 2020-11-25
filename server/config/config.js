@@ -3,18 +3,18 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const {
-  PORT,
   NODE_ENV,
-  DB_URL,
-  API_ROOT,
-  AUTH_API_PATH,
+  SERVER_PORT,
+  MONGO_ATLAS_URL,
+  AUTH_BACKEND,
 } = process.env;
-const TODO_DB = process.env.DB_NAME;
+
+const MONGO_DB = MONGO_ATLAS_URL;
+const PORT = SERVER_PORT;
+
 export {
-  PORT,
   NODE_ENV,
-  API_ROOT,
-  DB_URL,
-  TODO_DB,
-  AUTH_API_PATH,
+  PORT,
+  MONGO_DB,
+  AUTH_BACKEND,
 };

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { AUTH_API_PATH } from '../config/config';
+import { AUTH_BACKEND } from '../config/config';
 
 export default async function authRequest({ token, username }) {
   try {
-    const auth = await axios.get(AUTH_API_PATH, {
+    const auth = await axios.get(`${AUTH_BACKEND}/authorise`, {
       params: { username },
       headers: { 'x-todo-token': token },
     });
