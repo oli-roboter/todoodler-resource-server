@@ -27,6 +27,6 @@ export default function makeExpressCallabck(controller) {
           .status(statusCode)
           .send(data);
       })
-      .catch((e) => res.status(500).send({ error: e.message }));
+      .catch((e) => res.status(500).send({ resourceServerEerror: e.message }));
   };
 }

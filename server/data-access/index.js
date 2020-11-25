@@ -1,9 +1,14 @@
 import mongodb from 'mongodb';
+import dotenv from 'dotenv';
 import makeTodoDB from './db';
+
+dotenv.config();
 
 const { MongoClient } = mongodb;
 const dbName = 'todo';
-const client = new MongoClient(process.env.DB_URL,
+const uri = process.env.MONGO_ATLAS_URL;
+
+const client = new MongoClient(uri,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
