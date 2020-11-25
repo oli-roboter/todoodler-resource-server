@@ -4,7 +4,6 @@ export default function makeGetTodo({ listTodo, httpResponseHandler, authenticat
       const { token } = httpRequest.headers;
       const { query } = httpRequest;
       const { username } = query;
-
       const auth = await authenticate({ token, username });
       if (auth.success) {
         const { workGroup } = auth.data;

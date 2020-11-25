@@ -6,7 +6,6 @@
 import app from '../app';
 const debug = require('debug')('server:server')
 import http from 'http';
-console.log('listening on port', PORT);
 /**
  * Get port from environment and store in Express.
  */
