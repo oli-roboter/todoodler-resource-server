@@ -1,4 +1,4 @@
 NODE_ENV=development
-SERVER_PORT=8001
+TODOODLER_PORT=8001
 MONGO_ATLAS_URL=mongodb://localhost:8002
 AUTH_BACKEND=http://localhost:8000
